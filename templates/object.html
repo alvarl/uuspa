@@ -1,0 +1,567 @@
+{% extends "layout.html" %}
+
+{% block title %} Objekt  {% endblock %}
+
+{% block content %}
+
+     <div class="container">
+        <div class="navbar navbar-light bg-light">
+            <a class="navbar-brand"><img src="/static/pics/Weather-Partly-Cloudy-Day-icon.png" height="40"> +24 &#8451</a>
+            <form class="form-inline">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">&larr;</span>
+                    <input type="date" class="form-control form-control-sm" placeholder="xx.xx.xxxx" aria-label="Username"
+                           aria-describedby="basic-addon1">
+                    <span class="input-group-addon" id="basic-addon1">&rAarr;</span>
+                </div>
+            </form>
+            <span class="navbar-text">
+                Päeva tulu:
+                <span class="badge badge-success"> 430.00 </span>
+                Päeva kulu:
+                <span class="badge badge-danger"> 4500.00 </span>
+                Päeva kate:
+                <span class="badge badge-warning"> 4500.00 </span>
+            </span>
+            <div class="btn-group-sm">
+                <button type="button" class="btn btn-sm btn-outline-secondary">+</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse"
+                                data-target="#addnewobject"
+                                aria-expanded="false" aria-controls="addnewobject"><img src="/static/pics/108682-200.png"
+                                                                                    height="15">
+                        </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target="#dailyreports"><img src="/static/pics/listicon.png" height="15"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+    <div class="collapse" id="dailyreports">
+        <span> <br></span>
+            <table class="table table-striped table-hover table-sm dt-responsive" id="offer" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Art.id</th>
+                <th>Nimetus</th>
+                <th>Ühik</th>
+                <th>Kogus</th>
+                <th>Ühiku hind</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for entry in income %}
+                <tr>
+                    <td>{{ loop.index or '' }} </td>
+                    <td>{{ entry.3 or '' }} </td>
+                    <td>{{ entry.4 or ''}} </td>
+                    <td>{{ entry.5 or ''}} </td>
+                    <td>{{ entry.6 or ''}} </td>
+                    <td>{{ entry.7 or ''}} </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+
+<div class="container">
+    <div class="collapse" id="addnewobject">
+        <div class="card card-body">
+            <form class="container" id="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01">Objektijuht</label>
+                        <select class="custom-select form-control" id="validationServer01" required>
+                            <option value="">Vali objektijuht</option>
+                            <option value="1">Mägi</option>
+                            <option value="2">Org</option>
+                            <option value="3">Keegi</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer02">Projektijuht</label>
+                        <select class="custom-select form-control" id="validationServer01" required>
+                            <option value="">Vali projektijuht</option>
+                            <option value="1">Mägi</option>
+                            <option value="2">Org</option>
+                            <option value="3">Keegi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer03">Objekti nimetus</label>
+                        <input type="text" class="form-control" id="validationServer03"
+                               placeholder="Objekti nimetus..." required>
+                        <div class="invalid-feedback">
+                            Pane palun objetktile nimi
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationServer04">Shiffer</label>
+                        <input type="text" class="form-control" id="validationServer04"
+                               placeholder="304" readonly>
+                        <div class="invalid-feedback">
+                            Pane palun shiffer formaadis "xxx(a)"
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationServer05">Tähtaeg</label>
+                        <input type="text" class="form-control" id="validationServer05" placeholder="pp.kk.aaaa"
+                               required>
+                        <div class="invalid-feedback">
+                            Pane lõpptähtaeg
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-sm btn-primary" type="submit">Edasi</button>
+            </form>
+
+
+        </div>
+        <br>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <nav class="nav nav-tabs" id="myTab" role="tablist">
+        <a class="navbar-brand">360 Heki tee</a>
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-kulud" role="tab"
+           aria-controls="nav-home" aria-selected="true">Kulud</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-tulud" role="tab"
+           aria-controls="nav-profile" aria-selected="false">Tulud</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-hinnapakkumine" role="tab"
+           aria-controls="nav-contact" aria-selected="false">Hinnapakkumine</a>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane border border-secondary fade show active" id="nav-kulud" role="tabpanel" aria-labelledby="nav-home-tab">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm border border-secondary">
+                        <br>
+                        <h6>Tööjõud</h6>
+                        <table class="table table-sm table-striped" id="toojoud">
+                            <thead>
+                            <tr><
+                                <td>Töötaja</td>
+                                <td>Tund</td>
+                                <td>Sõit</td>
+                                <td>Tariif</td>
+                                <td>Summa</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Objektijuht</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>18</td>
+                                <td>90</td>
+                            </tr>
+                            <tr>
+                                <td>Projektijuht</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>18</td>
+                                <td>108 <span class="badge badge-warning">!</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm border border-secondary">
+                        <br>
+                        <h6>Mehhanismid verston</h6>
+                        <table class="table table-sm table-striped ">
+                            <thead>
+                                <td>Mehhanism</td>
+                                <td>Päev</td>
+                                <td>Tunnid</td>
+                                <td>Tariif</td>
+                                <td>Summa</td>
+                            </thead>
+                            <tr class="border border-warning">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                            <tr>
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm border border-secondary">
+                        <br>
+                        <h6>Mehhanismid rent</h6>
+                        <table class="table table-sm table-striped ">
+                            <tr>
+                                <td>Ettevõte</td>
+                                <td>Mehhanism</td>
+                                <td>Algus</td>
+                                <td>Lõpp</td>
+                                <td>Kogus</td>
+                                <td>Ühik</td>
+                                <td>Tariif</td>
+                                <td>Summa</td>
+                            </tr>
+                            <tr>
+                                <td>Raktoom</td>
+                                <td>Ekskavaator</td>
+                                <td></td>
+                                <td></td>
+                                <td>11</td>
+                                <td>h</td>
+                                <td>43</td>
+                                <td>473</td>
+                            </tr>
+                            <tr class="table-warning" >
+                                <td>Stroman</td>
+                                <td>Vibroplaat 200kg</td>
+                                <td></td>
+                                <td></td>
+                                <td>11</td>
+                                <td>h</td>
+                                <td>43</td>
+                                <td>473</td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm border border-secondary">
+                        <br>
+                        <h6>Transport</h6>
+                        <table class="table table-sm table-striped ">
+                            <tr class="table-success">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-sm border border-secondary">
+                        <br>
+                        <h6>Materjalid</h6>
+                        <table class="table table-sm table-striped ">
+                            <tr>
+                                <td>Tehas/karjäär</td>
+                                <td>Ettevõte</td>
+                                <td>Materjal</td>
+                                <td>Ident1</td>
+                                <td>Ident2</td>
+                                <td>Kogus</td>
+                                <td>Ühik</td>
+                                <td>Ühiku hind</td>
+                                <td>Summa</td>
+                            </tr><tr>
+                                <td>Harku</td>
+                                <td>TREV-2</td>
+                                <td>Killustik</td>
+                                <td>16/32</td>
+                                <td></td>
+                                <td>100</td>
+                                <td>T</td>
+                                <td>13</td>
+                                <td>1300</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm border border-secondary">
+                        <br>
+                        <h6>Muud kulud</h6>
+                        <table class="table table-sm table-striped ">
+                            <tr>
+                                <td>Ettevõte</td>
+                                <td>Teenus</td>
+                                <td>Kogus</td>
+                                <td>Ühik</td>
+                                <td>Tariif</td>
+                                <td>Summa</td>
+                            </tr><tr>
+                                <td>X</td>
+                                <td>Prügivedu</td>
+                                <td>3</td>
+                                <td>t</td>
+                                <td>40</td>
+                                <td>120</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm border border-secondary">
+                       <br>
+                        <h6>Kommentaarid</h6>
+                        <table class="table table-sm table-striped ">
+                            <tr class="table-success">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                            <tr class="table-success-outline">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm border border-secondary">
+                        <br>
+                        <h6>Kokku</h6>
+                        <table class="table table-sm table-striped ">
+                            <tr class="table-success">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>töötaja</td>
+                                <td>tund</td>
+                                <td>sõit</td>
+                                <td>tariif</td>
+                                <td>summa</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="nav-hinnapakkumine" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <span> <br></span>
+            <table class="table table-striped table-hover table-sm dt-responsive" id="offer" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Art.id</th>
+                <th>Nimetus</th>
+                <th>Ühik</th>
+                <th>Kogus</th>
+                <th>Ühiku hind</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for entry in income %}
+                <tr>
+                    <td>{{ loop.index or '' }} </td>
+                    <td>{{ entry.3 or '' }} </td>
+                    <td>{{ entry.4 or ''}} </td>
+                    <td>{{ entry.5 or ''}} </td>
+                    <td>{{ entry.6 or ''}} </td>
+                    <td>{{ entry.7 or ''}} </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        </div>
+        <div class="tab-pane fade" id="nav-tulud" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+            <span> <br></span>
+            <table class="table table-striped table-hover table-sm dt-responsive" id="income" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Art.id</th>
+                <th>Nimetus</th>
+                <th>Ühik</th>
+                <th>Teostatud</th>
+                <th>Mahu Jääk</th>
+                <th>Ühiku hind</th>
+                <th>Teostatud summa</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for entry in income %}
+                <tr>
+                    <td>{{ loop.index or '' }} </td>
+                    <td>{{ entry.3 or '' }} </td>
+                    <td>{{ entry.4 or ''}} </td>
+                    <td>{{ entry.5 or ''}} </td>
+                    <td class="table-success"> </td>
+                    <td>{{ entry.6 or ''}} </td>
+                    <td>{{ entry.7 or ''}} </td>
+                    <td class="table-success"> </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            var form = document.getElementById('needs-validation');
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        }, false);
+    })();
+</script>
+
+ <script>
+        $(document).ready(function () {
+            $('#income').dataTable( {
+            "language": {
+                "url": "/static/dataTables.estonian.lang"
+            }
+        } );
+    } );
+
+ </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#offer').dataTable( {
+            "language": {
+                "url": "/static/dataTables.estonian.lang"
+            }
+        } );
+    } );
+
+ </script>
+
+    <script>
+
+    $(document).ready(function() {
+    editor = new $.fn.dataTable.Editor( {
+        ajax: "../staff.php",
+        table: "#toojoud",
+        fields: [ {
+                label: "First name:",
+                name: "first_name"
+            }, {
+                label: "Last name:",
+                name: "last_name"
+            }, {
+                label: "Position:",
+                name: "position"
+            }, {
+                label: "Office:",
+                name: "office"
+            }, {
+                label: "Extension:",
+                name: "extn"
+            }, {
+                label: "Start date:",
+                name: "start_date",
+                type: "datetime"
+            }, {
+                label: "Salary:",
+                name: "salary"
+            }
+        ]
+    } );
+
+    // Activate an inline edit on click of a table cell
+    $('#toojoud').on( 'click', 'tbody td:not(:first-child)', function (e) {
+        editor.inline( this );
+    } );
+
+    $('#toojoud').DataTable( {
+        dom: "Bfrtip",
+        ajax: "../php/staff.php",
+        order: [[ 1, 'asc' ]],
+        columns: [
+            {
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            },
+            { data: "first_name" },
+            { data: "last_name" },
+            { data: "position" },
+            { data: "office" },
+            { data: "start_date" },
+            { data: "salary", render: $.fn.dataTable.render.number( ',', '.', 0, '$' ) }
+        ],
+        select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
+        buttons: [
+            { extend: "create", editor: editor },
+            { extend: "edit",   editor: editor },
+            { extend: "remove", editor: editor }
+        ]
+    } );
+} );
+</script>
+
+{% endblock %}

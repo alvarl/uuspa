@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %} Index {% endblock %}
+
+{% block content %}
+
+    <form class="container" id="needs-validation" method="post" novalidate>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="validationCustom01">Kasutajanimi</label>
+                <input type="email" name="username" class="form-control" id="validationCustom01" placeholder="" value="@verston.ee"
+                       required>
+                <div class="invalid-feedback">
+                    Palun sisesta oma kasutajanimi
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="validationCustom02">Parool</label>
+                <input type="password" name="password" class="form-control" id="validationCustom02" placeholder="" value=""
+                       required>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Logi sisse</button>
+    </form>
+
+
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var form = document.getElementById('needs-validation1');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+
+
+{% endblock %}

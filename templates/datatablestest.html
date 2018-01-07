@@ -1,0 +1,127 @@
+
+<link rel="stylesheet" type="text/css" href="/static/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="/static/editor.dataTables.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+<!-- editor !-->
+<script type="text/javascript" src="/static/jscript/dataTables.editor.js"></script>
+
+
+
+<h1> hello</h1>
+<div class="container" role="main">
+<table class="table table-striped" id="mydatatable" cellspacing="0" width="100%">
+     <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>PositionID</th>
+                <th>Position</th>
+                <th>x</th>
+            </tr>
+     </thead>
+    <tbody>
+
+    </tbody>
+
+</table>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        var editor = new $.fn.dataTable.Editor({
+            ajax: '/data/get',
+            table: '#mydatatable',
+            select: true,
+            idSrc: 'iduser',
+            fields: [{
+                label: "ID",
+                name: "iduser"
+            }, {
+                label: "Name",
+                name: "user_name"
+            }, {
+                label: "PositionID",
+                name: "user_position"
+            }, {
+                label: "Position",
+                name: "user_positions_name"
+            }
+            ]
+        });
+
+        var table = $('#mydatatable').DataTable({
+            ajax: '/data/get',
+            idSrc: 'iduser',
+            rowId: 'iduser',
+            columns: [
+                {data: 'iduser'},
+                {data: 'user_name', className: 'editable'},
+                {data: 'user_position',  className: 'editable'},
+                {data: 'user_positions_name'},
+                {
+                    data: null,
+                    editField: 'user_positions_name',
+                    className: "center",
+                    defaultContent: '<button class="button-sm editor_edit">Edit</button> / <button class="button-sm approve">Delete</button>'
+                }
+            ]
+        });
+
+        //$('#mydatatable').on('click', 'tr', function () {
+        //    var id = table.row(this).id();
+//
+//            alert('Clicked row id ' + id);
+//        });
+
+        $('#mydatatable').on('click', 'tbody td.editable', function (e) {
+            editor.inline(this);
+        });
+
+        // peale nupu vajutust toimub ...  ja siis tabel refreshitakse ilma sheeti refreshimata
+        $('#mydatatable').on('click', 'button.editor_edit' , function () {
+            console.log("edit!!");
+            var tr = $(this).closest('tr');
+            var id =  table.row(tr).id();
+            console.log(id);
+            //table.ajax.reload();
+            table.row(tr).invalidate().draw();
+        });
+
+        $('#mydatatable').on('click', 'button.editor_remove', function (e) {
+            e.preventDefault();
+            var tr = $('#example tbody tr:eq(0)');
+            console.log("remove!!");
+            var id = this;
+            console.log(id);
+            //table.ajax.reload();
+            table
+                .cell( this )
+                .invalidate()
+                .draw();
+        });
+
+        $('#mydatatable').on('click', 'button.approve',  function () {
+            editor
+                .edit(false)
+                .val('user_position', 1)
+                .submit();
+        });
+
+        console.log("siiani");
+    });
+
+
+</script>

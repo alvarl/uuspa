@@ -1,0 +1,254 @@
+{% extends "layout.html" %}
+
+{% block title %} Objektid {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 justify-content-between">
+            <div class="navbar-brand">
+                <i class="fa fa-road" aria-hidden="true"></i> Objektid
+                <span class="badge badge-primary"> {{ amount }} </span></a>
+            </div>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse"
+                            data-target="#addnewobject"
+                            aria-expanded="false" aria-controls="addnewobject">Lisa uus objekt
+                    </button>
+
+                </div>
+                <div class="btn-group mr2" role="group" aria-label="First group">
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Vaade: aktiivsed
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Näita ka arhiveerituid</a>
+                            <a class="dropdown-item" href="#">Näita käimasolevaid</a>
+                            <a class="dropdown-item" href="#">Ainult minu käimasolevad objektid</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="collapse" id="addnewobject">
+            <div class="card card-body">
+                <form class="container" id="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationServer01">Objektijuht</label>
+                            <select class="custom-select form-control" id="validationServer01" required>
+                                   <option value="">Vali objektijuht</option>
+                                    <option value="1">Mägi</option>
+                                    <option value="2">Org</option>
+                                    <option value="3">Keegi</option>
+                             </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationServer02">Projektijuht</label>
+                            <select class="custom-select form-control" id="validationServer01" required>
+                                   <option value="">Vali projektijuht</option>
+                                    <option value="1">Mägi</option>
+                                    <option value="2">Org</option>
+                                    <option value="3">Keegi</option>
+                             </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationServer03">Objekti nimetus</label>
+                            <input type="text" class="form-control" id="validationServer03"
+                                   placeholder="Objekti nimetus..." required>
+                            <div class="invalid-feedback">
+                                Pane palun objetktile nimi
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationServer04">Shiffer</label>
+                            <input type="text" class="form-control" id="validationServer04"
+                                   placeholder="Shiffer" required>
+                            <div class="invalid-feedback">
+                                Pane palun shiffer formaadis "xxx(a)"
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationServer05">Tähtaeg</label>
+                            <input type="text" class="form-control" id="validationServer05" placeholder="pp.kk.aaaa"
+                                   required>
+                            <div class="invalid-feedback">
+                                Pane lõpptähtaeg
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-sm btn-primary" type="submit">Edasi</button>
+                </form>
+            </div>
+            <br>
+        </div>
+    </div>
+
+
+<script>
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+
+  window.addEventListener('load', function() {
+    var form = document.getElementById('needs-validation');
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  }, false);
+})();
+</script>
+
+    <div role="main" class="container" id="objects">
+        <table class="table table-striped table-hover table-responsive-sm dt-responsive" id="table_objects" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Shiffer</th>
+                <th>Nimi</th>
+                <th>Eelarve</th>
+                <th>Algus</th>
+                <th>Tähtaeg</th>
+                <th>Seis</th>
+                <th>Viimane<br>päevaaruanne</th>
+                <th>Objektijuht</th>
+                <th>Üldkulude %</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entry in result %}
+                <tr id="{{ loop.index }}" class="clickable-row">
+                    <td>{{ entry.1 }}</td>
+                    <td>{{ entry.2 }}</td>
+                    <td>100000</td>
+                    <td>{{ entry.5.strftime("%d.%m.%Y") }}</td>
+                    <td>{{ entry.6.strftime("%d.%m.%Y") }}</td>
+                    <td>
+                        {% set a = 2300 -  loop.index * 400  %}
+                        {% if a < 0 %}
+                        <a href="#" class="btn btn-danger btn-sm" tabindex="0" data-toggle="popover"
+                           data-trigger="focus"
+                           data-popover-content="#a1" data-placement="right">{{ 2300 -  loop.index * 400 }}</a>
+                        {% else %}
+                        <a href="#" class="btn btn-primary btn-sm" tabindex="0" data-toggle="popover"
+                           data-trigger="focus"
+                           data-popover-content="#a1" data-placement="right">{{ 2300 -  loop.index * 400 }}</a>
+                        {% endif %}
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ entry.8 * 100 }}%</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+<!-- Content for Popover #1 -->
+<div id="a1" class="hidden" style="display: none">
+    <div class="popover-heading">Brutotulem <span style="float:right;cursor:pointer;" class="fa fa-times"
+                                                  data-toggle="popover"></span></div>
+    <div class="popover-body">
+        <table style="width:100%" class="table-sm table-striped">
+            <tr class="table-dark">
+                <td>Kulud</td>
+                <td>Summa</td>
+            </tr>
+            <tr>
+                <td>Tööjõud</td>
+                <td>50 000</td>
+            </tr>
+            <tr>
+                <td>Mehhanismid</td>
+                <td>100 000</td>
+            </tr>
+            <tr>
+                <td>Materjalid</td>
+                <td>300 000</td>
+            </tr>
+            <tr>
+                <td>Mingi veel</td>
+                <td>300 000</td>
+            </tr>
+            <tr class="font-weight-bold">
+                <td>Kulud kokku</td>
+                <td>400 000</td>
+            </tr>
+            <tr class="font-weight-bold">
+                <td>Tulud kokku</td>
+                <td>300 000</td>
+            </tr>
+            <tr class="table-danger font-weight-bold">
+                <td>Tulem</td>
+                <td>-100 000</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="a2" class="hidden" style="display: none">
+    <div class="popover-heading">Brutotulem <span style="float:right;cursor:pointer;" class="fa fa-times"
+                                                  data-toggle="popover"></span></div>
+    <div class="popover-body">
+        <table style="width:100%" class="table-sm table-striped">
+            <tr class="table-dark">
+                <td>Kulud</td>
+                <td>Summa</td>
+            </tr>
+            <tr>
+                <td>Tööjõud</td>
+                <td>50 000</td>
+            </tr>
+            <tr>
+                <td>Mehhanismid</td>
+                <td>100 000</td>
+            </tr>
+            <tr>
+                <td>Materjalid</td>
+                <td>300 000</td>
+            </tr>
+            <tr>
+                <td>Mingi veel</td>
+                <td>300 000</td>
+            </tr>
+            <tr class="font-weight-bold">
+                <td>Kulud kokku</td>
+                <td>400 000</td>
+            </tr>
+            <tr class="font-weight-bold">
+                <td>Tulud kokku</td>
+                <td>300 000</td>
+            </tr>
+            <tr class="table-success font-weight-bold">
+                <td>Tulem</td>
+                <td>-100 000</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+    <script>
+    $(document).ready(function () {
+            $('#table_objects').dataTable({
+                "language": {
+                    "url": "/static/dataTables.estonian.lang"
+                }
+            });
+        });
+    </script>
+{% endblock %}

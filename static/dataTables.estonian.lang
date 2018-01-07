@@ -1,0 +1,17 @@
+
+{
+	"sProcessing":   "Palun oodake, koostan kuvamiseks nimekirja!",
+	"sLengthMenu":   "N&auml;ita kirjeid _MENU_ kaupa",
+	"sZeroRecords":  "Otsitavat vastet ei leitud.",
+	"sInfo":         "Kuvatud: (_START_-_END_) _TOTAL_",
+	"sInfoEmpty":    "Otsinguvasteid ei leitud",
+	"sInfoFiltered": " - filteeritud _MAX_",
+	"sInfoPostFix":  " -st.",
+	"sSearch":       "Otsi:",
+	"oPaginate": {
+		"sFirst":      "Algus",
+		"sPrevious":   "Eelmine",
+		"sNext":       "J&auml;rgmine",
+		"sLast":       "Viimane"
+	}
+}

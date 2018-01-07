@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Navbar Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/navbar.css" rel="stylesheet">
+</head>
+
+
+<div class="container">
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
+        <a class="navbar-brand" href="#"> <img src="http://www.verston.ee/t/images/logo.png" height="20" alt=""></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Objektid <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ülevaade</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Kontroll</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Seaded</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="šiffer" aria-label="siffer">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Objektile</button>
+            </form>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" tabindex="0" data-toggle="popover" data-trigger="focus"
+           data-popover-content="#a1" data-placement="right" href="#">
+            360 Heki tee
+            <span class="badge badge-danger"> -23k </span></a>
+
+        <span class="navbar-text">
+
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse"
+                                data-target="#addnewobject"
+                                aria-expanded="false" aria-controls="addnewobject">Muuda objekti infot
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Lisa päevaaruanne</button>
+            </div>
+    </span>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="collapse" id="addnewobject">
+        <div class="card card-body">
+            <form class="container" id="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01">Objektijuht</label>
+                        <select class="custom-select form-control" id="validationServer01" required>
+                            <option value="">Vali objektijuht</option>
+                            <option value="1">Mägi</option>
+                            <option value="2">Org</option>
+                            <option value="3">Keegi</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer02">Projektijuht</label>
+                        <select class="custom-select form-control" id="validationServer01" required>
+                            <option value="">Vali projektijuht</option>
+                            <option value="1">Mägi</option>
+                            <option value="2">Org</option>
+                            <option value="3">Keegi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer03">Objekti nimetus</label>
+                        <input type="text" class="form-control" id="validationServer03"
+                               placeholder="Objekti nimetus..." required>
+                        <div class="invalid-feedback">
+                            Pane palun objetktile nimi
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationServer04">Shiffer</label>
+                        <input type="text" class="form-control" id="validationServer04"
+                               placeholder="304" readonly>
+                        <div class="invalid-feedback">
+                            Pane palun shiffer formaadis "xxx(a)"
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationServer05">Tähtaeg</label>
+                        <input type="text" class="form-control" id="validationServer05" placeholder="pp.kk.aaaa"
+                               required>
+                        <div class="invalid-feedback">
+                            Pane lõpptähtaeg
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-sm btn-primary" type="submit">Edasi</button>
+            </form>
+
+
+        </div>
+        <br>
+    </div>
+</div>
+</div>
+
+<div class="container">
+    <nav class="nav nav-tabs" id="myTab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+           aria-controls="nav-home" aria-selected="true">Home</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+           aria-controls="nav-profile" aria-selected="false">Profile</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+           aria-controls="nav-contact" aria-selected="false">Contact</a>
+        <span class="navbar-text">
+                <input class="form-control form-control-sm" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+        </span>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+    </div>
+    </nav>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            var form = document.getElementById('needs-validation');
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        }, false);
+    })();
+</script>
+
+
+<!-- Content for Popover #1 -->
+<div id="a1" class="hidden" style="display: none">
+    <div class="popover-heading">Brutotulem <span style="float:right;cursor:pointer;" class="fa fa-times"
+                                                  data-toggle="popover"></span></div>
+    <div class="popover-body">
+        <table style="width:100%" class="table-sm table-striped">
+            <tr class="table-dark">
+                <td>Kulud</td>
+                <td>Summa</td>
+            </tr>
+            <tr>
+                <td>Tööjõud</td>
+                <td>50 000</td>
+            </tr>
+            <tr>
+                <td>Mehhanismid</td>
+                <td>100 000</td>
+            </tr>
+            <tr>
+                <td>Materjalid</td>
+                <td>300 000</td>
+            </tr>
+            <tr>
+                <td>Mingi veel</td>
+                <td>300 000</td>
+            </tr>
+            <tr class="font-weight-bold">
+                <td>Kulud kokku</td>
+                <td>400 000</td>
+            </tr>
+            <tr class="font-weight-bold">
+                <td>Tulud kokku</td>
+                <td>300 000</td>
+            </tr>
+            <tr class="table-danger font-weight-bold">
+                <td>Tulem</td>
+                <td>-100 000</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="a2" class="hidden" style="display: none">
+    <div class="popover-heading">Brutotulem <span style="float:right;cursor:pointer;" class="fa fa-times"
+                                                  data-toggle="popover"></span></div>
+    <div class="popover-body">
+        <table style="width:100%" class="table-sm table-striped">
+            <tr class="table-dark">
+                <td>Kulud</td>
+                <td>Summa</td>
+            </tr>
+            <tr>
+                <td>Tööjõud</td>
+                <td>50 000</td>
+            </tr>
+            <tr>
+                <td>Mehhanismid</td>
+                <td>100 000</td>
+            </tr>
+            <tr>
+                <td>Materjalid</td>
+                <td>300 000</td>
+            </tr>
+            <tr>
+                <td>Mingi veel</td>
+                <td>300 000</td>
+            </tr>
+            <tr class="font-weight-bold">
+                <td>Kulud kokku</td>
+                <td>400 000</td>
+            </tr>
+            <tr class="font-weight-bold">
+                <td>Tulud kokku</td>
+                <td>300 000</td>
+            </tr>
+            <tr class="table-success font-weight-bold">
+                <td>Tulem</td>
+                <td>-100 000</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</html>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="/static/jscript/popper.min.js"></script>
+<script src="/static/jscript/bootstrap.min.js"></script>
+
+<!-- Datepicker plugin --!>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<!-- Bootstrap lubab popoverid-->
+
+<script>
+
+
+    $(function () {
+        $("[data-toggle=popover]").popover({
+            html: true,
+            content: function () {
+                var content = $(this).attr("data-popover-content");
+                return $(content).children(".popover-body").html();
+            },
+            title: function () {
+                var title = $(this).attr("data-popover-content");
+                return $(title).children(".popover-heading").html();
+            }
+        });
+    });
+
+
+    <!-- Bootstrap ära kaduv popover-->
+    $('.popover-dismiss').popover({
+        trigger: 'focus'
+    })
+</script>
+
+<!-- vormide kontroll --!>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            var form = document.getElementById('needs-validation');
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        }, false);
+    })();
+</script>
+
+<!-- initsialiseerime datepickeri -->
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+</body>
